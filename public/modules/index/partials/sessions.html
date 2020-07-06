@@ -1,0 +1,53 @@
+<!--To do: Create a directive for a "session" -->
+
+<div class='container'>
+  <h1>Sessions</h1>
+  <hr>
+  <h2>Summary</h2>
+  <div class="container">
+    <ol>
+      <li ng-repeat="session in sessions">{{session.Title}}</li>
+    </ol>
+  </div>
+  <hr>
+  <h2>Session Papers</h2>
+  <div ng-repeat="session in sessions">
+    <h3>{{session.Title}}</h3>
+    <div ng-repeat="paper in session.papers"> <!-- change this to only loop over a set of "currently filtered" projects -->
+      <div class="row">
+        <div ng-class-odd="'oddrow'" ng-class-even="'evenrow'">
+          <h4>{{paper.Title}}</h4>
+          <ul>
+            <li ng-repeat="author in paper.authors">{{author.author}}, {{author.affiliation}}</li>
+          </ul>
+          <p>Keywords: trombone, uncle, fairytale</p>
+          <p>
+            <a href="http://nowhere.com">3 Minute Video</a> |
+            <a href="http://nowhere.com">20 Minute Video</a> |
+            <a href="http://nowhere.com">Slides</a> |
+            <a href="http://nowhere.com">Paper</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-repeat="project in featuredProjects">
+  <div class="row" ng-show="project">
+    <div ng-class-odd="'col-sm-7'" ng-class-even="'col-sm-7 col-sm-push-5'">
+      <h1>
+        <a href="/#/project/{{project.name}}">{{project.title}}</a>
+        <!--{{project.title}}-->
+      </h1>
+      <h3 class="text-muted">{{project.subtitle}}</h3>
+      <p class="lead">
+        {{project.description}}</p>
+    </div>
+    <div ng-class-odd="'col-sm-5 '" ng-class-even="'col-sm-5 col-sm-pull-7'" class="text-center">
+      <a href="/#/project/{{project.name}}"><img ng-class-odd="'pull-right'" class="img-rounded img-responsive" ng-src="{{project.image}}" alt="Generic placeholder image"></a>
+      <div class="caption">{{project.caption}}</div>
+    </div>
+  </div>
+  <hr>
+</div>

@@ -1,0 +1,45 @@
+// Defines classes for page architectural layout
+
+// Pads the top of the page to allow space for the header
+@header-height: 50px;
+@footer-height: 230px;
+
+// Vertical extension
+@vert-padding: 20px;
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: 400;
+}
+
+// Full-screen main logo
+.img-fullscreen-logo {
+  padding-left: 5vw;
+  padding-right: 5vw;
+  width: 100vw;
+}
+
+.logo-main {
+  height: 40px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+// Add padding to the top and bottom of a container
+.container-vertical {
+  padding-top: @vert-padding;
+  padding-bottom: @vert-padding;
+}
+
+hr {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.oddrow {
+  background-color: #eeeeee;
+}
+
+.evenrow {
+  background-color: #dddddd;
+}

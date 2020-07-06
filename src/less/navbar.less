@@ -1,0 +1,128 @@
+
+
+// Navbar
+// --------------------------------------------------------
+
+// Main Background
+@navbar-inverse-bg:                  @brand1;
+@navbar-inverse-border:              darken(@navbar-inverse-bg, 15%);
+
+// Inverted navbar links
+@navbar-inverse-link-color:          @gray-lighter;
+
+// Hover
+@navbar-inverse-link-hover-color:    @white;
+@navbar-inverse-link-hover-bg:       transparent;
+
+// Active
+@navbar-inverse-link-active-color:   @brand2;
+@navbar-inverse-link-active-bg:      @white;
+
+// Brand
+@navbar-inverse-brand-color:         @navbar-inverse-link-color;
+@navbar-inverse-brand-hover-color:   @brand-primary;
+@navbar-inverse-brand-hover-bg:      @white;
+
+// Inverted navbar toggle
+@navbar-inverse-toggle-hover-bg:     @brand-primary;
+@navbar-inverse-toggle-icon-bar-bg:  @white;
+@navbar-inverse-toggle-border-color: @white;
+@navbar-inverse-brand-color:         @white;
+@navbar-inverse-brand-hover-color:   @brand-primary;
+@navbar-inverse-link-active-bg:      @brand-primary;
+
+// Geometry
+@navbar-height:                      @header-height;
+@navbar-margin-bottom:               @line-height-computed;
+@navbar-border-radius:               @border-radius-base;
+@navbar-padding-horizontal:          floor((@grid-gutter-width / 2));
+@navbar-padding-vertical:            ((@navbar-height - @line-height-computed) / 2);
+
+// Default colors
+@navbar-default-color:               @brand1;
+@navbar-default-bg:                  @brand1;
+@navbar-default-border:              darken(@navbar-default-bg, 6.5%);
+
+// Navbar links
+@navbar-default-link-color:          rgba(255,255,255,.50);
+@navbar-default-link-hover-color:    rgba(255,255,255,.50);
+@navbar-default-link-hover-bg:       @brand-primary;
+@navbar-default-link-active-color:   @brand3;
+@navbar-default-link-active-bg:      @brand-primary;
+@navbar-default-link-disabled-color: #ccc;
+@navbar-default-link-disabled-bg:    transparent;
+
+// Navbar brand label
+@navbar-default-brand-color:         @white;
+@navbar-default-brand-hover-color:   darken(@navbar-default-brand-color, 10%);
+@navbar-default-brand-hover-bg:      transparent;
+
+// Navbar toggle
+@navbar-default-toggle-hover-bg:     @brand-primary;;
+@navbar-default-toggle-icon-bar-bg:  @white;
+@navbar-default-toggle-border-color: @white;
+
+.navbar-nav > li {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.navbar-nav > li > a {
+  padding-left: 0;
+  padding-right: 0;
+  color: @brand3; /* IE8 proofing */
+  //color: rgba(255,255,255,.50);
+  border: 2px solid transparent;
+  height: 42px;
+}
+.navbar-nav > li > a:hover,
+.navbar-nav > li > a:focus {
+  background-color: transparent;
+  border-bottom-color: rgba(255,255,255,.50);
+}
+.navbar-nav > .active > a,
+.navbar-nav > .active > a:hover,
+.navbar-nav > .active > a:focus {
+  color: #fff;
+  border-bottom-color: @brand3;
+}
+
+.navbar {
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 0;
+}
+
+// remove the border
+.navbar-fixed-top {
+  border-width: 0;
+}
+
+.navbar-collapse {
+  // border-bottom: 1px solid transparent;
+  // box-shadow: inset 0 1px 0 rgba(255,255,255,.1);
+}
+
+.navbar-toggle {
+  border: 2px solid transparent;
+}
+
+// Tweak the brand
+.navbar-brand {
+  font-size: 20px;
+  margin-top: -1px;
+  letter-spacing: 1px;
+  font-weight: bolder;
+  padding: 10px 15px;
+  // Prevent Font Awesome icon from increasing height of navbar
+  > .fa {
+    float: left;
+    margin-top: 1px;
+    margin-right: 5px;
+  }
+}
+
+// create space at the top of pages to account for the navbar header
+.navbar-space{
+  padding-top: 60px;
+}

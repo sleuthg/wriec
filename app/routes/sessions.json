@@ -1,0 +1,37 @@
+{
+  "sessions": [
+    {
+      "number": 1,
+      "title": "Accounting",
+      "papers": [
+        {
+          "title": "Analyst Coverage and Corporate Risk Taking",
+          "authors": [
+            {
+              "name": "Pingyi Lou",
+              "association": "Fudan University"
+            },
+            {
+              "name": "Tao Chen",
+              "association": "Nanyang Technological University"
+            }
+          ],
+          "keywords": [
+            "egg",
+            "basket",
+            "bumpkin"
+          ],
+          "shortVideoUrl": "http://somewhere.com",
+          "longVideoUrl": "http://somewhereelse.com",
+          "slidesUrl": "http://somewherenear.com",
+          "paperUrl": "http://somewherefar.com"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Actuarial Science ‐ Life, Retirement, Longevity",
+      "papers": []
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: @footer-height;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: @footer-height;
+}
+
+.footer {
+  text-align: center;
+  padding: 25px 0;
+  h4 {
+    color: lighten(@brand-primary, 15%);
+    margin-left: 5px;
+    font-size: 24px;
+    width: 185px;
+    letter-spacing: 1px;
+  }
+  p {
+    font-size: 12px;
+    color: lighten(@gray-light, 15%);
+    margin-top: 15px;
+    margin-bottom: 0;
+    a {
+      text-decoration: none;
+      color: @gray-light;
+      &:hover {
+        color: @gray-lighter;
+      }
+    }
+  }
+  li {
+    list-style: none;
+    font-size: 16px;
+    text-align: left;
+    color: @brand4;
+    a {
+      text-decoration: none;
+      color: @brand4;
+      &:hover {
+        color: lighten(@brand4, 15%);
+      }
+    }
+    i {
+      color: @brand-primary;
+    }
+    .fa {
+      color:@gray-light;
+    }
+  }
+  a {
+    color:@gray;
+    &:hover {
+      color:@gray-light
+    }
+  }
+
+}

@@ -1,0 +1,11 @@
+.DS_Store
+extern
+node_modules
+.idea
+*/env/development*.js
+public/lib
+public/css
+public/img
+*.idraw
+npm-debug.log
+

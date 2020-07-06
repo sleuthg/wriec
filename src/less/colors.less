@@ -1,0 +1,138 @@
+// Basic idea is that "objects" should not have intrinsic color
+// but that color should be added via a class.  However if an object
+// is *always* the same color then you can use the less mixins
+// ==============================================
+// Bad:
+// ==============================================
+// .jumbotron {
+//   padding: 30px;
+//   margin-bottom: 30px;
+//   color: #ffffff;            // should be @white
+//   background-color: #4baad3; // should be @blue
+// }
+//
+// <div class=jumbotron></div>  // no indication of colors - bad
+//
+// ===============================================
+// Good:
+// ===============================================
+// .jumbotron {
+//   padding: 30px;
+//   margin-bottom: 30px;
+//   // color: #ffffff;
+//   // background-color: #4baad3;
+// }
+//
+// .white {      color: @white; }
+// .bg-blue {    background-color: @blue; }
+//
+// <div class=jumbotron bg-blue white></div>  // obvious colors in markup
+//
+// ===============================================
+
+// Brand   https://kuler.adobe.com/create/color-wheel/
+@brand-primary: #221d34;  // "Dark Navy"   34 29 52
+
+// Brand Colors
+// The brand colors come from the American Risk and Insurance Association website
+// http://aria.org/about-aria/
+@brand1:  @brand-primary;
+@brand2:  #2e0e89;   // 46 14 137 purple
+@brand3:  #199ddc;   // 25 157 220 blue
+@brand4:  #7abd31;   // 122 189 49 green
+@brand5:  @brand-primary;  // Only 4 brand colors defined
+
+// Cool
+@aqua:    #7FDBFF;
+@blue:    #0074D9;
+@navy:    #001F3F;
+@teal:    #39CCCC;
+@green:   #2ECC40;
+@olive:   #3D9970;
+@lime:    #01FF70;
+
+// Warm
+@yellow:  #FFDC00;
+@orange:  #FF851B;
+@red:     #FF4136;
+@pink:    #FF748A;
+@fuchsia: #F012BE;
+@purple:  #B10DC9;
+@maroon:  #85144B;
+
+// Gray Scale
+@white:   #FFFFFF;
+@silver:  #DDDDDD;
+@gray:    #AAAAAA;
+@black:   #111111;
+
+// Brand
+.brand  {      color: @brand-primary;}
+.brand1 {      color: @brand1; }
+.brand2 {      color: @brand2; }
+.brand3 {      color: @brand3; }
+.brand4 {      color: @brand4; }
+.brand5 {      color: @brand5; }
+
+// Brand Backgrounds
+.bg-brand  {   background-color: @brand-primary;  }
+.bg-brand1 {   background-color: @brand1; }
+.bg-brand2 {   background-color: @brand2; }
+.bg-brand3 {   background-color: @brand3; }
+.bg-brand4 {   background-color: @brand4; }
+.bg-brand5 {   background-color: @brand5; }
+
+// Colors
+.pink {       color: @pink; }
+.navy {       color: @navy; }
+.blue {       color: @blue; }
+.aqua {       color: @aqua; }
+.teal {       color: @teal; }
+.olive {      color: @olive; }
+.green {      color: @green; }
+.lime {       color: @lime; }
+.yellow {     color: @yellow; }
+.orange {     color: @orange; }
+.red {        color: @red; }
+.fuchsia {    color: @fuchsia; }
+.purple {     color: @purple; }
+.maroon {     color: @maroon; }
+.white {      color: @white; }
+.silver {     color: @silver; }
+.gray {       color: @gray; }
+.black {      color: @black; }
+
+// Backgrounds
+.bg-navy {    background-color: @navy; }
+.bg-blue {    background-color: @blue; }
+.bg-aqua {    background-color: @aqua; }
+.bg-teal {    background-color: @teal; }
+.bg-olive {   background-color: @olive; }
+.bg-green {   background-color: @green; }
+.bg-lime {    background-color: @lime; }
+.bg-yellow {  background-color: @yellow; }
+.bg-orange {  background-color: @orange; }
+.bg-red {     background-color: @red; }
+.bg-pink {    background-color: @pink; }
+.bg-fuchsia { background-color: @fuchsia; }
+.bg-purple {  background-color: @purple; }
+.bg-maroon {  background-color: @maroon; }
+.bg-white {   background-color: @white; }
+.bg-gray {    background-color: @gray; }
+.bg-silver {  background-color: @silver; }
+.bg-black {   background-color: @black; }
+
+// --- Text Colors --- //
+@color_text: #000;                    // Standard text color
+@color_text_inv: #fff - @color_text;  // "Inverted" text color (for things like input boxes)
+@color_text_h1: @color_text;          // Header 1 text color
+@color_link: #23b4db;                 // Link color #FF0
+@color_link_visited: #FFC0CB;         // Visited link color
+@color_link_hover: #3498db;           // Hovered link color DC5245
+@color_link_active: @color_text;      // Active link color
+
+// --- Social Media Buttons --- //
+@color_fb_icon:#3B5998;
+@color_linkedin_icon:#007bb6;
+@color_googleplus_icon: #dd4b39;
+@color_guest_icon: #8A2BE2;

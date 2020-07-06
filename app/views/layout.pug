@@ -1,0 +1,99 @@
+doctype html
+html(xmlns:ng="http://angularjs.org")
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='World Risk and Insurance Economics Congress')
+    meta(name='author', content='WRIEC')
+
+    title WRIEC
+
+    //- Styles
+    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css")
+    link(rel='stylesheet', href='css/customStyles.css')
+
+    //- Fonts
+    link(rel="stylesheet", type='text/css', href='//fonts.googleapis.com/css?family=Droid+Sans|Lato|Revalia')
+    link(rel="stylesheet", type='text/css', href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700italic,900,400italic,300')
+
+    //- Icons
+    link( rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-icon-57x57.png")
+    link( rel="apple-touch-icon" sizes="60x60" href="/favicons/apple-icon-60x60.png")
+    link( rel="apple-touch-icon" sizes="72x72" href="/favicons/apple-icon-72x72.png")
+    link( rel="apple-touch-icon" sizes="76x76" href="/favicons/apple-icon-76x76.png")
+    link( rel="apple-touch-icon" sizes="114x114" href="/favicons/apple-icon-114x114.png")
+    link( rel="apple-touch-icon" sizes="120x120" href="/favicons/apple-icon-120x120.png")
+    link( rel="apple-touch-icon" sizes="144x144" href="/faviconsapple-icon-144x144.png")
+    link( rel="apple-touch-icon" sizes="152x152" href="/favicons/apple-icon-152x152.png")
+    link( rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-icon-180x180.png")
+    link( rel="icon" type="image/png" sizes="192x192"  href="/favicons/android-icon-192x192.png")
+    link( rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png")
+    link( rel="icon" type="image/png" sizes="96x96" href="/favicons/favicon-96x96.png")
+    link( rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png")
+    link( rel="manifest" href="/favicons/manifest.json")
+    meta( name="msapplication-TileColor" content="#ffffff")
+    meta( name="msapplication-TileImage" content="/ms-icon-144x144.png")
+    meta( name="theme-color" content="#ffffff")
+
+  body
+    div
+      //- Implement single page application (SPA)
+      div.navbar-space
+        section(ng-view)
+
+      //- https://getbootstrap.com/components/#navbar
+      nav.navbar.navbar-default.navbar-fixed-top
+        div.container-fluid
+          //- Brand and toggle get grouped for better mobile display
+          div.navbar.navbar-header
+            button.navbar-toggle.collapsed(type="button" data-toggle="collapse" data-target="#sa-navbar-collapse-1" aria-expanded="false")
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            a.navbar-brand(href="/#/")
+              img.logo-main(alt="Brand" src="img/name.png")
+
+          //- Collect the nav links, forms, and other content for toggling
+          //-div.collapse.navbar-collapse(id="sa-navbar-collapse-1")
+            ul.nav.navbar-nav.navbar-right
+              li.active
+                a(href="/#/") Home
+                  span.sr-only (current)
+
+    div.footer.bg-brand
+
+      block foot
+
+        .container.brand4
+          ul.list-unstyled.list-inline
+            li
+              a(href='/#!/') Home
+
+  //- JQuery
+  script(type='text/javascript', src='//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+  script(type='text/javascript', src='/js/jquery.cycle2.js')
+  script(type='text/javascript', src="http://malsup.github.io/jquery.cycle2.center.js")
+  script(type='text/javascript', src='/js/sa_custom.js')
+
+  //- Angular "non .min" resources
+  script(type="text/javascript", src="/lib/angular/angular.js")
+  script(type="text/javascript", src="/lib/angular-route/angular-route.js")
+  script(type="text/javascript", src="/lib/angular-resource/angular-resource.js")
+  script(type="text/javascript", src="/lib/angular-cookies/angular-cookies.js")
+  script(type="text/javascript", src="/lib/angular-animate/angular-animate.js")
+  script(type="text/javascript", src="/lib/angular-messages/angular-messages.js")
+
+  //- Front-end MVC Angular application
+  script(src="/application.js")
+  script(src="/modules/index/index.client.module.js")
+  script(src="/modules/index/index.client.controller.js")
+  script(src="/modules/index/index.client.routes.js")
+  script(src="/modules/index/index.client.directives.js")
+
+  //- Bootstrap core JavaScript
+  //- Placed at the end of the document so the pages load faster
+  script(type='text/javascript', src='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')
+  script(src='js/ie10-viewport-bug-workaround.js')
+
