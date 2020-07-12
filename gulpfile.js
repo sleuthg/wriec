@@ -112,16 +112,16 @@ gulp.task('images', function() {
     .pipe(notify({ message: 'Images task complete' }));
 });
 
+// Data task
+// ---------
+gulp.task('data', function() {
+  return gulp.src(src + '/csv/*.json')
+    .pipe(cache())
+    .pipe(plumber({errorHandler: onError}))
+    .pipe(gulp.dest('app/routes'))
+    .pipe(notify({ message: 'Data task complete' }));
+})
+
 // Default task
 // ------------
-gulp.task('default', gulp.parallel('styles', 'scripts', 'images'));
-
-// // Development task
-// // ----------------
-// Commented out because it's not upgraded to 4.0 yet.
-//  gulp.task('dev', [], function() {
-//  gulp.watch(src + '/scss/**/*.scss', ['styles']);
-//  gulp.watch(src + '/less/**/*', ['styles']);
-//  gulp.watch(src + '/js/**/*.js', ['scripts']);
-//  gulp.watch(src + '/img/**/*', ['images']);
-//});
+gulp.task('default', gulp.parallel('styles', 'scripts', 'images', 'data'));

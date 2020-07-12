@@ -4,16 +4,10 @@ angular.module('index').config([
 
     $routeProvider.
       when('/', {
-        templateUrl: 'modules/index/index_view_2.html'
+        templateUrl: 'modules/index/index.html'
       }).
-      when('/portfolio', {
-        templateUrl: 'modules/index/portfolio.html'
-      }).
-      when('/contact', {
-        templateUrl: 'modules/index/contact.html'
-      }).
-      when('/project/:projectId', {
-        templateUrl: 'modules/index/project_template.html'
+      when('/rs', {
+        templateUrl: 'modules/index/research_sessions.html'
       }).
       when('/error/403', {
         templateUrl: 'modules/index/403.html'
