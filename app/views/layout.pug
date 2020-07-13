@@ -39,7 +39,7 @@ html(xmlns:ng="http://angularjs.org")
   body
     div
       //- Implement single page application (SPA)
-      div.navbar-space
+      div.navbar-space(ng-controller="IndexController")
         section(ng-view)
 
       //- https://getbootstrap.com/components/#navbar
@@ -56,11 +56,25 @@ html(xmlns:ng="http://angularjs.org")
               img.logo-main(alt="Brand" src="img/name.png")
 
           //- Collect the nav links, forms, and other content for toggling
-          //-div.collapse.navbar-collapse(id="sa-navbar-collapse-1")
+          div.collapse.navbar-collapse(id="sa-navbar-collapse-1")
             ul.nav.navbar-nav.navbar-right
               li.active
                 a(href="/#/") Home
                   span.sr-only (current)
+              li
+                a(href="/#/p") Plenaries
+              li
+                a(href="/#/rs") Research Sessions
+              li
+                a(href="/#/rf") Research Forums
+              li
+                a(href="/#/ts") Teaching Sessions
+              li
+                a(href="/#/a") Awards
+              li
+                a(href="/#/s") Sponsors
+              li
+                a(href="/#/t") Team
 
     div.footer.bg-brand
 
@@ -69,7 +83,9 @@ html(xmlns:ng="http://angularjs.org")
         .container.brand4
           ul.list-unstyled.list-inline
             li
-              a(href='/#!/') Home
+              | Hosted by
+              |
+              a(href='http://aria.org/') American Risk and Insurance Association
 
   //- JQuery
   script(type='text/javascript', src='//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')

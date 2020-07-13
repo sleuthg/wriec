@@ -2,12 +2,17 @@ This readme is for keeping track of development for the WRIEC website.
 
 ### The Basics
 
-Installing the application: 
+Install the application: 
 ````
 npm install
 ````
 
-Starting the server:
+Add a file named config/env/development.js, which is not maintained in the repo:
+````
+module.export = {}; 
+````
+
+Start the server to test locally:
 ````
 npm start
 ````

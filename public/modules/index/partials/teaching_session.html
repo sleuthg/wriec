@@ -1,0 +1,14 @@
+<div class='container'>
+  <h1>Teaching Session</h1>
+  <hr>
+  <div ng-repeat="paper in teaching"> <!-- change this to only loop over a set of "currently filtered" projects -->
+    <div class="row">
+      <div ng-class-odd="'oddrow'" ng-class-even="'evenrow'">
+        <h4>{{paper.Title}}</h4>
+        <ul>
+          <li ng-repeat="author in paper.authors">{{author.author}}, {{author.affiliation}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

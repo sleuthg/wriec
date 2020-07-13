@@ -1,6 +1,6 @@
 <!--To do: Make the font sizes more legivble -->
 <!--To do: Create links from the summary list to anchors in the individual sections. -->
-<!--To do: Build a search/filter 
+<!--To do: Build a search/filter -->
 
 <div class='container'>
   <h1>Research Sessions</h1>
@@ -33,23 +33,4 @@
       </div>
     </div>
   </div>
-</div>
-
-<div ng-repeat="project in featuredProjects">
-  <div class="row" ng-show="project">
-    <div ng-class-odd="'col-sm-7'" ng-class-even="'col-sm-7 col-sm-push-5'">
-      <h1>
-        <a href="/#/project/{{project.name}}">{{project.title}}</a>
-        <!--{{project.title}}-->
-      </h1>
-      <h3 class="text-muted">{{project.subtitle}}</h3>
-      <p class="lead">
-        {{project.description}}</p>
-    </div>
-    <div ng-class-odd="'col-sm-5 '" ng-class-even="'col-sm-5 col-sm-pull-7'" class="text-center">
-      <a href="/#/project/{{project.name}}"><img ng-class-odd="'pull-right'" class="img-rounded img-responsive" ng-src="{{project.image}}" alt="Generic placeholder image"></a>
-      <div class="caption">{{project.caption}}</div>
-    </div>
-  </div>
-  <hr>
 </div>

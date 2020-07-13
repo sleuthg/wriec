@@ -1,17 +1,3 @@
-angular.module('index').directive('sketchSlideshow', function () {
-  return {
-    restrict: 'AC',
-    link: function (scope, element, attrs) {
-      var config = angular.extend({
-        sketches: '.slide'
-      }, scope.$eval(attrs.sketchSlideshow));
-
-      setTimeout(function () {
-        element.cycle(config);
-      }, 0);
-    }
-  };
-});
 
 angular.module('index').directive('starchTestimonial', function() {
   return {

@@ -6,7 +6,8 @@ angular.module('index').controller('IndexController', [
   function($scope, $routeParams, $location, $http) {
 
     $http.get('/data').success(function(data) {
-      $scope.sessions = data;
+      $scope.sessions = data.research;
+      $scope.teaching = data.teaching;
     });
 
     //$scope.currentPath = $location.path();
