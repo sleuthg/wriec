@@ -13,9 +13,11 @@
   </div>
   <hr>
   <h2>Session Papers</h2>
+  <label for="author">Author: </label>
+  <input type="text" ng-model="search.author" required id="author">
   <div ng-repeat="session in sessions">
     <h3>{{session.Title}}</h3>
-    <div ng-repeat="paper in session.papers"> <!-- change this to only loop over a set of "currently filtered" projects -->
+    <div ng-repeat="paper in session.papers | filter:authormatch"> <!-- change this to only loop over a set of "currently filtered" projects -->
       <div class="row">
         <div ng-class-odd="'oddrow'" ng-class-even="'evenrow'">
           <h4>{{paper.Title}}</h4>
