@@ -112,16 +112,6 @@ gulp.task('images', function() {
     .pipe(notify({ message: 'Images task complete' }));
 });
 
-// Data task
-// ---------
-gulp.task('data', function() {
-  return gulp.src(src + '/csv/*.json')
-    .pipe(cache())
-    .pipe(plumber({errorHandler: onError}))
-    .pipe(gulp.dest('app/routes'))
-    .pipe(notify({ message: 'Data task complete' }));
-})
-
 // Default task
 // ------------
-gulp.task('default', gulp.parallel('styles', 'scripts', 'images', 'data'));
+gulp.task('default', gulp.parallel('styles', 'scripts', 'images'));
