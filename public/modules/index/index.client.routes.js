@@ -15,18 +15,18 @@ angular.module('index').config([
       when('/rf', {
         templateUrl: 'modules/index/research_forum.html'
       }).
-      when('/s', {
-        templateUrl: 'modules/index/sponsors.html'
-      }).
+      // when('/s', {
+      //   templateUrl: 'modules/index/sponsors.html'
+      // }).
       when('/p', {
         templateUrl: 'modules/index/plenaries.html'
       }).
       when('/a', {
         templateUrl: 'modules/index/awards.html'
       }).
-      when('/t', {
-        templateUrl: 'modules/index/team.html'
-      }).
+      // when('/t', {
+      //   templateUrl: 'modules/index/team.html'
+      // }).
       when('/error/403', {
         templateUrl: 'modules/index/403.html'
       }).

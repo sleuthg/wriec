@@ -4,34 +4,47 @@
 
 <div class='container'>
   <h1>Research Sessions</h1>
+  <form>
+    <div class="form-group">
+      <label for="sessionSelect">Filter by Session</label>
+      <select class="form-control" id="sessionSelect" ng-model="search.session">
+        <option value="">Show All Sessions</option>
+        <option ng-repeat="session in sessions">{{session.Title}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="authorSelect">Filter by Author</label>
+      <select class="form-control" id="authorSelect" ng-model="search.author">
+        <option value="">Show All Authors</option>
+        <option ng-repeat="author in authors">{{author.author}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="keywordSelect">Filter by Keyword</label>
+      <select class="form-control" id="keywordSelect" ng-model="search.keyword">
+        <option value="">Show All Keywords</option>
+        <option ng-repeat="keyword in keywords">{{keyword}}</option>
+      </select>
+    </div>
+  </form>
   <hr>
-  <h2>Summary</h2>
-  <div class="container">
-    <ol>
-      <li ng-repeat="session in sessions">{{session.Title}}</li>
-    </ol>
-  </div>
-  <hr>
-  <h2>Session Papers</h2>
-  <label for="author">Author: </label>
-  <input type="text" ng-model="search.author" required id="author">
-  <div ng-repeat="session in sessions">
+<!--  <label for="author">Author: </label>-->
+<!--  <input type="text" ng-model="search.author" required id="author">-->
+  <div ng-repeat="session in sessions | filter:sessionmatch">
     <h3>{{session.Title}}</h3>
-    <div ng-repeat="paper in session.papers | filter:authormatch"> <!-- change this to only loop over a set of "currently filtered" projects -->
-      <div class="row">
-        <div ng-class-odd="'oddrow'" ng-class-even="'evenrow'">
-          <h4>{{paper.Title}}</h4>
-          <ul>
-            <li ng-repeat="author in paper.authors">{{author.author}}, {{author.affiliation}}</li>
-          </ul>
-          <p>Keywords: trombone, uncle, fairytale</p>
-          <p>
-            <a href="http://nowhere.com">3 Minute Video</a> |
-            <a href="http://nowhere.com">20 Minute Video</a> |
-            <a href="http://nowhere.com">Slides</a> |
-            <a href="http://nowhere.com">Paper</a>
-          </p>
-        </div>
+    <div ng-repeat="paper in session.papers | filter:authormatch | filter:keywordmatch">
+      <div class="container paper-view" ng-class-odd="'oddrow'" ng-class-even="'evenrow'">
+        <h4>{{paper.Title}}</h4>
+        <ul>
+          <li ng-repeat="author in paper.authors">{{author.author}}, {{author.affiliation}}</li>
+        </ul>
+        <p>Keywords: {{paper.Keywords}}</p>
+        <p>
+          <a href="https://player.vimeo.com/video/{{paper.ShortVideo}}">3 Minute Video</a> |
+          <a href="https://player.vimeo.com/video/{{paper.LongVideo}}">20 Minute Video</a> |
+          <a href="{{paper.SlidesLink}}">Slides</a> |
+          <a href="{{paper.PaperLink}}">Paper</a>
+        </p>
       </div>
     </div>
   </div>
