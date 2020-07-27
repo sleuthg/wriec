@@ -16,7 +16,7 @@
       <label for="authorSelect">Filter by Author</label>
       <select class="form-control" id="authorSelect" ng-model="search.author">
         <option value="">Show All Authors</option>
-        <option ng-repeat="author in authors">{{author.author}}</option>
+        <option ng-repeat="author in authors">{{author.authorLastFirst}}</option>
       </select>
     </div>
     <div class="form-group">

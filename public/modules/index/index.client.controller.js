@@ -45,7 +45,7 @@ angular.module('index').controller('IndexController', [
         return true;
       }
       for (let i=0; i<paper.authors.length; i++) {
-        if (paper.authors[i].author === $scope.search.author) {
+        if (paper.authors[i].authorLastFirst === $scope.search.author) {
           return true;
         }
       }
