@@ -39,11 +39,13 @@
           <li ng-repeat="author in paper.authors">{{author.author}}, {{author.affiliation}}</li>
         </ul>
         <p>Keywords: {{paper.Keywords}}</p>
+        <p>Discussant: {{paper.Discussant}}, {{paper.DiscAffiliation}}</p>
         <p>
           <a href="https://player.vimeo.com/video/{{paper.ShortVideo}}">3 Minute Video</a> |
           <a href="https://player.vimeo.com/video/{{paper.LongVideo}}">20 Minute Video</a> |
           <a href="{{paper.SlidesLink}}">Slides</a> |
-          <a href="{{paper.PaperLink}}">Paper</a>
+          <a href="{{paper.PaperLink}}">Paper</a> |
+          <a href="https://player.vimeo.com/video/{{paper.DiscVideo}}">Discussant Video</a>
         </p>
       </div>
     </div>
