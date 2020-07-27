@@ -2,13 +2,12 @@
   <h1>Teaching Session</h1>
   <hr>
   <div ng-repeat="paper in teaching"> <!-- change this to only loop over a set of "currently filtered" projects -->
-    <div class="row">
-      <div ng-class-odd="'oddrow'" ng-class-even="'evenrow'">
-        <h4>{{paper.Title}}</h4>
-        <ul>
-          <li ng-repeat="author in paper.authors">{{author.author}}, {{author.affiliation}}</li>
-        </ul>
-      </div>
+    <div class="container paper-view" ng-class-odd="'oddrow'" ng-class-even="'evenrow'" style="padding-bottom:5px;">
+      <h4>{{paper.Title}}</h4>
+      <ul>
+        <li ng-repeat="author in paper.authors">{{author.author}}, {{author.affiliation}}</li>
+      </ul>
+      <a href="https://player.vimeo.com/video/{{paper.Video}}">Video</a>
     </div>
   </div>
 </div>
