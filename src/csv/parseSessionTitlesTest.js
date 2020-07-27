@@ -13,6 +13,7 @@ const teachingSessCSV='./teaching_sessions.csv'
 const jsonFileDest = '../../app/routes/wriec_sessions.json'
 
 let i,j;
+let authName;
 
 let organizeAuthors = function (papers, maxAuth) {
   // Loop over the papers and organize the authors
@@ -20,8 +21,12 @@ let organizeAuthors = function (papers, maxAuth) {
     papers[i].authors = [];
     for (j=1; j<=maxAuth; j++) {
       if (papers[i]['Author '+j] !== "") {
+        authName = papers[i]['Author '+j];
+        const authFirst = authName.split(' ').slice(0, -1).join(' ');
+        const authLast = authName.split(' ').slice(-1).join(' ');
         papers[i].authors.push({
-          author: papers[i]['Author '+j],
+          author: authName,
+          authorLastFirst: authLast + ', ' + authFirst,
           affiliation: papers[i]['Affiliation '+j]
         });
       }
@@ -59,8 +64,8 @@ let aggregateAuthors = function (papers) {
   }
   authors = uniqueArray(authors);
   authors = authors.sort(function(a,b) {
-    const nameA = a.author.toUpperCase();
-    const nameB = b.author.toUpperCase();
+    const nameA = a.authorLastFirst.toUpperCase();
+    const nameB = b.authorLastFirst.toUpperCase();
     if (nameA < nameB) {
       return -1;
     }
