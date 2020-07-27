@@ -129,7 +129,8 @@ let aggregateKeywords = function (papers) {
         };
 
         // stringify JSON Object
-        const jsonContent = JSON.stringify(all_data);
+        let jsonContent = JSON.stringify(all_data);
+        jsonContent = jsonContent.replace("–","-");
         //console.log(jsonContent);
 
         fs.writeFile(jsonFileDest, jsonContent, 'utf8', function (err) {
