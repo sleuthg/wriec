@@ -37,6 +37,9 @@ angular.module('index').controller('IndexController', [
         $scope.filterOrder.push(filterType);
       }
 
+      // @TODO: If filter set to "Show All", then splice from filterOrder
+      //
+
       console.log($scope.filterOrder);
       console.log($scope.search);
 
@@ -48,14 +51,18 @@ angular.module('index').controller('IndexController', [
           $scope.sessions = $scope.sessions.filter($scope.sessionmatch);
         }
         else if ($scope.filterOrder[i] === "author") {
-          // Filter by author
-          $scope.sessions = $scope.sessions.map(function(s) {
-            s.papers = s.papers.filter($scope.authormatch);
-            return s;
-          });
-          $scope.sessions = $scope.sessions.filter(function(s) {
-            return s.papers.length > 0;
-          });
+          if ($scope.search.author !== undefined) {
+            if ($scope.search.author !== "") {
+              // Filter by author
+              $scope.sessions = $scope.sessions.map(function(s) {
+                s.papers = s.papers.filter($scope.authormatch);
+                return s;
+              });
+              $scope.sessions = $scope.sessions.filter(function(s) {
+                return s.papers.length > 0;
+              });
+            }
+          }
         }
         else if ($scope.filterOrder[i] === "keyword") {
           // Filter by keyword
