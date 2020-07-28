@@ -10,40 +10,81 @@ angular.module('index').controller('IndexController', [
       $scope.teaching = data.teaching;
       $scope.authors = data.authors;
       $scope.keywords = data.keywords;
+      $scope.alldata = data;
     });
 
     $scope.search = {
-      author: undefined,
       session: undefined,
+      author: undefined,
       keyword: undefined,
       affiliation: undefined,
       association: undefined
     };
 
-    // // Return boolean dependent on finding author snippet in paper
-    // $scope.authormatch = function (paper) {
-    //   if (!angular.isDefined(paper) ||
-    //       !angular.isDefined($scope.search) ||
-    //       !angular.isDefined($scope.search.author)) {
-    //     return true;
-    //   }
-    //   let authorMatch = false;
-    //   for (let i=0; i<paper.authors.length; i++) {
-    //     if (paper.authors[i].author.toLowerCase().includes($scope.search.author.toLowerCase())) {
-    //       authorMatch = true;
-    //     }
-    //   }
-    //   return authorMatch;
-    // }
+    $scope.filterOrder = [];
+
+    // Filter the papers and only display sessions that contain papers after filtering
+    $scope.filterPapers = function(filterType) {
+
+      // Choosing a session will cause the author and keywords selection options to shrink
+      // Choosing an author will not change the session selection option
+      // Choosing a keyword will not change
+
+      $scope.sessions = $scope.alldata.research;
+
+      // Define the order of the filtering
+      if (!($scope.filterOrder.includes(filterType))) {
+        $scope.filterOrder.push(filterType);
+      }
+
+      console.log($scope.filterOrder);
+      console.log($scope.search);
+
+      // Execute the filtering in the right order
+      for (let i=0;i<$scope.filterOrder.length;i++) {
+
+        if ($scope.filterOrder[i] === "session") {
+          // Filter by session
+          $scope.sessions = $scope.sessions.filter($scope.sessionmatch);
+        }
+        else if ($scope.filterOrder[i] === "author") {
+          // Filter by author
+          $scope.sessions = $scope.sessions.map(function(s) {
+            s.papers = s.papers.filter($scope.authormatch);
+            return s;
+          });
+          $scope.sessions = $scope.sessions.filter(function(s) {
+            return s.papers.length > 0;
+          });
+        }
+        else if ($scope.filterOrder[i] === "keyword") {
+          // Filter by keyword
+          $scope.session = $scope.sessions.map(function(s) {
+            s.papers = s.papers.filter($scope.keywordmatch);
+            return s;
+          });
+          $scope.sessions = $scope.sessions.filter(function(s) {
+            return s.papers.length > 0;
+          });
+        }
+      }
+    };
+
+    let checkDefined = function(x,y) {
+      if (!angular.isDefined(x) ||
+          !angular.isDefined($scope.search) ||
+          !angular.isDefined($scope.search[y])) {
+        return true;
+      }
+      if ($scope.search[y] === "") {
+        return true;
+      }
+      return false;
+    }
 
     // Return boolean dependent on finding author of paper
     $scope.authormatch = function (paper) {
-      if (!angular.isDefined(paper) ||
-          !angular.isDefined($scope.search) ||
-          !angular.isDefined($scope.search.author)) {
-        return true;
-      }
-      if ($scope.search.author === "") {
+      if (checkDefined(paper,"author")) {
         return true;
       }
       for (let i=0; i<paper.authors.length; i++) {
@@ -110,6 +151,22 @@ angular.module('index').controller('IndexController', [
       }
       return $scope.search.association === paper.Association;
     }
+
+    // // Return boolean dependent on finding author snippet in paper
+    // $scope.authormatch = function (paper) {
+    //   if (!angular.isDefined(paper) ||
+    //       !angular.isDefined($scope.search) ||
+    //       !angular.isDefined($scope.search.author)) {
+    //     return true;
+    //   }
+    //   let authorMatch = false;
+    //   for (let i=0; i<paper.authors.length; i++) {
+    //     if (paper.authors[i].author.toLowerCase().includes($scope.search.author.toLowerCase())) {
+    //       authorMatch = true;
+    //     }
+    //   }
+    //   return authorMatch;
+    // }
 
   }
 ]);
