@@ -15,7 +15,9 @@ angular.module('index').controller('IndexController', [
     $scope.search = {
       author: undefined,
       session: undefined,
-      keyword: undefined
+      keyword: undefined,
+      affiliation: undefined,
+      association: undefined
     };
 
     // // Return boolean dependent on finding author snippet in paper
@@ -65,7 +67,7 @@ angular.module('index').controller('IndexController', [
       return session.Title === $scope.search.session;
     }
 
-    // Return boolean dependent on finding session title in paper
+    // Return boolean dependent on finding keyword associated with paper
     $scope.keywordmatch = function(paper) {
       if (!angular.isDefined(paper) ||
           !angular.isDefined($scope.search) ||
@@ -77,6 +79,36 @@ angular.module('index').controller('IndexController', [
       }
       const re = /\s*(?:,|$)\s*/
       return paper.Keywords.split(re).map(x => x.toLowerCase()).includes($scope.search.keyword);
+    }
+
+    // Return boolean dependent on finding affiliation associated with paper
+    $scope.affiliationmatch = function(paper) {
+      if (!angular.isDefined(paper) ||
+          !angular.isDefined($scope.search) ||
+          !angular.isDefined($scope.search.affiliation)) {
+        return true;
+      }
+      if ($scope.search.affiliation === "") {
+        return true;
+      }
+      for (let i=0; i<paper.authors.length; i++) {
+        if (paper.authors[i].affiliation === $scope.search.affiliation) {
+          return true;
+        }
+      }
+    }
+
+    // Return boolean dependent on finding affiliation associated with paper
+    $scope.associationmatch = function(paper) {
+      if (!angular.isDefined(paper) ||
+          !angular.isDefined($scope.search) ||
+          !angular.isDefined($scope.search.association)) {
+        return true;
+      }
+      if ($scope.search.keyword === "") {
+        return true;
+      }
+      return $scope.search.association === paper.Association;
     }
 
   }
