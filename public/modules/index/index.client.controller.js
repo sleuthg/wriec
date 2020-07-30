@@ -39,6 +39,10 @@ angular.module('index').controller('IndexController', [
 
       // @TODO: If filter set to "Show All", then splice from filterOrder
       //
+      if ($scope.search.author === undefined || $scope.search.author === "") {
+        let idx = $scope.filterOrder.find(function)
+      }
+
 
       console.log($scope.filterOrder);
       console.log($scope.search);
