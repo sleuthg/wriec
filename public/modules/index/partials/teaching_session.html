@@ -7,7 +7,16 @@
       <ul>
         <li ng-repeat="author in paper.authors">{{author.author}}, {{author.affiliation}}</li>
       </ul>
-      <a href="https://player.vimeo.com/video/{{paper.TeachingVideo}}">Video</a>
+      <a ng-if="paper.TeachingVideo" href="https://player.vimeo.com/video/{{paper.TeachingVideo}}">Video</a>
+      <span ng-if="paper.AssociatedMaterials1"> |
+        <a href="{{paper.AssociatedMaterials1}}">Supporting Material 1</a>
+      </span>
+      <span ng-if="paper.AssociatedMaterials2"> |
+        <a href="{{paper.AssociatedMaterials2}}">Supporting Material 2</a>
+      </span>
+      <span ng-if="paper.AssociatedMaterials3"> |
+        <a href="{{paper.AssociatedMaterials3}}">Supporting Material 3</a>
+      </span>
     </div>
   </div>
 </div>
