@@ -34,7 +34,7 @@
       </select>
     </div>
     <div class="form-group">
-      <label for="affiliationSelect">Filter by Affiation</label>
+      <label for="affiliationSelect">Filter by Affiliation</label>
       <select class="form-control" id="affiliationSelect" ng-model="search.affiliation" ng-change="filterPapers()">
         <option value="">Show All Affiliations</option>
         <option ng-repeat="affiliation in affiliations">{{affiliation}}</option>
