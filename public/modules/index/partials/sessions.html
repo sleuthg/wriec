@@ -7,51 +7,43 @@
   <form>
     <div class="form-group">
       <label for="sessionSelect">Filter by Session</label>
-      <select class="form-control" id="sessionSelect" ng-model="search.session" ng-change="filterPapers('session')">
+      <select class="form-control" id="sessionSelect" ng-model="search.session" ng-change="filterPapers()">
         <option value="">Show All Sessions</option>
-        <option ng-repeat="session in alldata.research">{{session.Title}}</option>
+        <option ng-repeat="session in research">{{session.Title}}</option>
       </select>
     </div>
     <div class="form-group">
       <label for="authorSelect">Filter by Author</label>
-      <select class="form-control" id="authorSelect" ng-model="search.author" ng-change="filterPapers('author')">
+      <select class="form-control" id="authorSelect" ng-model="search.author" ng-change="filterPapers()">
         <option value="">Show All Authors</option>
         <option ng-repeat="author in authors">{{author.authorLastFirst}}</option>
       </select>
     </div>
     <div class="form-group">
       <label for="keywordSelect">Filter by Keyword</label>
-      <select class="form-control" id="keywordSelect" ng-model="search.keyword" ng-change="filterPapers('keyword')">
+      <select class="form-control" id="keywordSelect" ng-model="search.keyword" ng-change="filterPapers()">
         <option value="">Show All Keywords</option>
         <option ng-repeat="keyword in keywords">{{keyword}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="associationSelect">Filter by Association</label>
+      <select class="form-control" id="associationSelect" ng-model="search.association" ng-change="filterPapers()">
+        <option value="">Show All Associations</option>
+        <option ng-repeat="association in associations">{{association}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="affiliationSelect">Filter by Affiation</label>
+      <select class="form-control" id="affiliationSelect" ng-model="search.affiliation" ng-change="filterPapers()">
+        <option value="">Show All Affiliations</option>
+        <option ng-repeat="affiliation in affiliations">{{affiliation}}</option>
       </select>
     </div>
   </form>
   <hr>
 <!--  <label for="author">Author: </label>-->
 <!--  <input type="text" ng-model="search.author" required id="author">-->
-
-
-<!--  <div ng-repeat="session in sessions | filter:sessionmatch">-->
-<!--    <h3>Session {{session.ID}}: {{session.Title}}</h3>-->
-<!--    <div ng-repeat="paper in session.papers | filter:authormatch | filter:keywordmatch">-->
-<!--      <div class="container paper-view" ng-class-odd="'oddrow'" ng-class-even="'evenrow'">-->
-<!--        <h4>{{paper.Title}}</h4>-->
-<!--        <ul>-->
-<!--          <li ng-repeat="author in paper.authors">{{author.author}}, {{author.affiliation}}</li>-->
-<!--        </ul>-->
-<!--        <p>Keywords: {{paper.Keywords}}</p>-->
-<!--        <p>Discussant: {{paper.Discussant}}, {{paper.DiscAffiliation}}</p>-->
-<!--        <p>-->
-<!--          <a href="https://player.vimeo.com/video/{{paper.ShortVideo}}">3 Minute Video</a> |-->
-<!--          <a href="https://player.vimeo.com/video/{{paper.LongVideo}}">20 Minute Video</a> |-->
-<!--          <a href="{{paper.SlidesLink}}">Slides</a> |-->
-<!--          <a href="{{paper.PaperLink}}">Paper</a> |-->
-<!--          <a href="https://player.vimeo.com/video/{{paper.DiscVideo}}">Discussant Video</a>-->
-<!--        </p>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
 
   <div ng-repeat="session in sessions">
     <h3>Session {{session.ID}}: {{session.Title}}</h3>
@@ -72,6 +64,10 @@
         </p>
       </div>
     </div>
+  </div>
+
+  <div ng-if="!sessions.length">
+    <p style="font-weight:bold;font-size:medium;">No papers found. Try re-setting one or more filters to "Show All".</p>
   </div>
 
 </div>

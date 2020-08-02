@@ -7,78 +7,76 @@ angular.module('index').controller('IndexController', [
 
     $http.get('/data').success(function(data) {
       $scope.sessions = data.research;
+      $scope.research = data.research;
       $scope.teaching = data.teaching;
       $scope.authors = data.authors;
       $scope.keywords = data.keywords;
-      $scope.alldata = data;
+      $scope.affiliations = data.affiliations;
+      $scope.associations = data.associations;
     });
 
     $scope.search = {
-      session: undefined,
-      author: undefined,
-      keyword: undefined,
-      affiliation: undefined,
-      association: undefined
+      session: "",
+      author: "",
+      keyword: "",
+      affiliation: "",
+      association: ""
     };
 
-    $scope.filterOrder = [];
-
     // Filter the papers and only display sessions that contain papers after filtering
-    $scope.filterPapers = function(filterType) {
+    $scope.filterPapers = function() {
 
-      // Choosing a session will cause the author and keywords selection options to shrink
-      // Choosing an author will not change the session selection option
-      // Choosing a keyword will not change
+      $scope.sessions = JSON.parse(JSON.stringify($scope.research));
 
-      $scope.sessions = $scope.alldata.research;
-
-      // Define the order of the filtering
-      if (!($scope.filterOrder.includes(filterType))) {
-        $scope.filterOrder.push(filterType);
+      // Filter by session
+      if ($scope.search.session !== "") {
+        $scope.sessions = $scope.sessions.filter($scope.sessionmatch);
       }
 
-      // @TODO: If filter set to "Show All", then splice from filterOrder
-      //
-      if ($scope.search.author === undefined || $scope.search.author === "") {
-        let idx = $scope.filterOrder.find(function)
+      // Filter by author
+      if ($scope.search.author !== "") {
+        $scope.sessions = $scope.sessions.map(function(s) {
+          s.papers = s.papers.filter($scope.authormatch);
+          return s;
+        });
+        $scope.sessions = $scope.sessions.filter(function(s) {
+          return s.papers.length > 0;
+        });
       }
 
-
-      console.log($scope.filterOrder);
-      console.log($scope.search);
-
-      // Execute the filtering in the right order
-      for (let i=0;i<$scope.filterOrder.length;i++) {
-
-        if ($scope.filterOrder[i] === "session") {
-          // Filter by session
-          $scope.sessions = $scope.sessions.filter($scope.sessionmatch);
-        }
-        else if ($scope.filterOrder[i] === "author") {
-          if ($scope.search.author !== undefined) {
-            if ($scope.search.author !== "") {
-              // Filter by author
-              $scope.sessions = $scope.sessions.map(function(s) {
-                s.papers = s.papers.filter($scope.authormatch);
-                return s;
-              });
-              $scope.sessions = $scope.sessions.filter(function(s) {
-                return s.papers.length > 0;
-              });
-            }
-          }
-        }
-        else if ($scope.filterOrder[i] === "keyword") {
-          // Filter by keyword
-          $scope.session = $scope.sessions.map(function(s) {
-            s.papers = s.papers.filter($scope.keywordmatch);
-            return s;
-          });
-          $scope.sessions = $scope.sessions.filter(function(s) {
-            return s.papers.length > 0;
-          });
-        }
+      // Filter by keyword
+      if ($scope.search.keyword !== "") {
+        $scope.session = $scope.sessions.map(function(s) {
+          s.papers = s.papers.filter($scope.keywordmatch);
+          return s;
+        });
+        $scope.sessions = $scope.sessions.filter(function(s) {
+          return s.papers.length > 0;
+        });
       }
+
+      // Filter by association
+      if ($scope.search.association !== "") {
+        $scope.session = $scope.sessions.map(function(s) {
+          s.papers = s.papers.filter($scope.associationmatch);
+          return s;
+        });
+        $scope.sessions = $scope.sessions.filter(function(s) {
+          return s.papers.length > 0;
+        });
+      }
+
+      // Filter by affiliation
+      if ($scope.search.affiliation !== "") {
+        $scope.session = $scope.sessions.map(function(s) {
+          s.papers = s.papers.filter($scope.affiliationmatch);
+          return s;
+        });
+        $scope.sessions = $scope.sessions.filter(function(s) {
+          return s.papers.length > 0;
+        });
+      }
+
     };
 
     let checkDefined = function(x,y) {
@@ -157,7 +155,7 @@ angular.module('index').controller('IndexController', [
           !angular.isDefined($scope.search.association)) {
         return true;
       }
-      if ($scope.search.keyword === "") {
+      if ($scope.search.association === "") {
         return true;
       }
       return $scope.search.association === paper.Association;
