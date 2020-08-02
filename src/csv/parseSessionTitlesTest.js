@@ -112,7 +112,7 @@ let aggregateKeywords = function (papers) {
 // Do the conversion and save the JSON file
   csv().fromFile(sessTitlesCSV).then(function (sessions) {
     csv().fromFile(sessionsCSV).then(function (papers) {
-      papers = organizeAuthors(papers, 5);
+      papers = organizeAuthors(papers, 6);
 
       // Add the papers to the appropriate sessions
       for (i = 0; i < sessions.length; i++) {
