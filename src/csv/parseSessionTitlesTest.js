@@ -108,6 +108,28 @@ let aggregateKeywords = function (papers) {
   return keywords;
 }
 
+let aggregateAffiliations = function (papers) {
+  let affiliations = [];
+  for (i=0; i<papers.length; i++) {
+    for (j=0; j<papers[i].authors.length; j++) {
+      affiliations.push(papers[i].authors[j].affiliation);
+    }
+  }
+  affiliations = uniqueArray2(affiliations);
+  affiliations = affiliations.sort();
+  return affiliations;
+}
+
+let aggregateAssociations = function (papers) {
+  let associations = [];
+  for (i=0; i<papers.length; i++) {
+    associations.push(papers[i].Association);
+  }
+  associations = uniqueArray2(associations);
+  associations = associations.sort();
+  return associations;
+}
+
 // module.exports = function parse_wriec_csv(cb) {
 // Do the conversion and save the JSON file
   csv().fromFile(sessTitlesCSV).then(function (sessions) {
@@ -124,13 +146,17 @@ let aggregateKeywords = function (papers) {
         teaching = organizeAuthors(teaching, 2);
         const authors = aggregateAuthors(papers);
         const keywords = aggregateKeywords(papers);
+        const affiliations = aggregateAffiliations(papers);
+        const associations = aggregateAssociations(papers);
 
         // Create a structure with all of the website model data
         const all_data = {
           research: sessions,
           teaching: teaching,
           authors: authors,
-          keywords: keywords
+          keywords: keywords,
+          affiliations: affiliations,
+          associations: associations
         };
 
         // stringify JSON Object

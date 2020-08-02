@@ -7,43 +7,93 @@ angular.module('index').controller('IndexController', [
 
     $http.get('/data').success(function(data) {
       $scope.sessions = data.research;
+      $scope.research = data.research;
       $scope.teaching = data.teaching;
       $scope.authors = data.authors;
       $scope.keywords = data.keywords;
+      $scope.affiliations = data.affiliations;
+      $scope.associations = data.associations;
     });
 
     $scope.search = {
-      author: undefined,
-      session: undefined,
-      keyword: undefined,
-      affiliation: undefined,
-      association: undefined
+      session: "",
+      author: "",
+      keyword: "",
+      affiliation: "",
+      association: ""
     };
 
-    // // Return boolean dependent on finding author snippet in paper
-    // $scope.authormatch = function (paper) {
-    //   if (!angular.isDefined(paper) ||
-    //       !angular.isDefined($scope.search) ||
-    //       !angular.isDefined($scope.search.author)) {
-    //     return true;
-    //   }
-    //   let authorMatch = false;
-    //   for (let i=0; i<paper.authors.length; i++) {
-    //     if (paper.authors[i].author.toLowerCase().includes($scope.search.author.toLowerCase())) {
-    //       authorMatch = true;
-    //     }
-    //   }
-    //   return authorMatch;
-    // }
+    // Filter the papers and only display sessions that contain papers after filtering
+    $scope.filterPapers = function() {
+
+      $scope.sessions = JSON.parse(JSON.stringify($scope.research));
+
+      // Filter by session
+      if ($scope.search.session !== "") {
+        $scope.sessions = $scope.sessions.filter($scope.sessionmatch);
+      }
+
+      // Filter by author
+      if ($scope.search.author !== "") {
+        $scope.sessions = $scope.sessions.map(function(s) {
+          s.papers = s.papers.filter($scope.authormatch);
+          return s;
+        });
+        $scope.sessions = $scope.sessions.filter(function(s) {
+          return s.papers.length > 0;
+        });
+      }
+
+      // Filter by keyword
+      if ($scope.search.keyword !== "") {
+        $scope.session = $scope.sessions.map(function(s) {
+          s.papers = s.papers.filter($scope.keywordmatch);
+          return s;
+        });
+        $scope.sessions = $scope.sessions.filter(function(s) {
+          return s.papers.length > 0;
+        });
+      }
+
+      // Filter by association
+      if ($scope.search.association !== "") {
+        $scope.session = $scope.sessions.map(function(s) {
+          s.papers = s.papers.filter($scope.associationmatch);
+          return s;
+        });
+        $scope.sessions = $scope.sessions.filter(function(s) {
+          return s.papers.length > 0;
+        });
+      }
+
+      // Filter by affiliation
+      if ($scope.search.affiliation !== "") {
+        $scope.session = $scope.sessions.map(function(s) {
+          s.papers = s.papers.filter($scope.affiliationmatch);
+          return s;
+        });
+        $scope.sessions = $scope.sessions.filter(function(s) {
+          return s.papers.length > 0;
+        });
+      }
+
+    };
+
+    let checkDefined = function(x,y) {
+      if (!angular.isDefined(x) ||
+          !angular.isDefined($scope.search) ||
+          !angular.isDefined($scope.search[y])) {
+        return true;
+      }
+      if ($scope.search[y] === "") {
+        return true;
+      }
+      return false;
+    }
 
     // Return boolean dependent on finding author of paper
     $scope.authormatch = function (paper) {
-      if (!angular.isDefined(paper) ||
-          !angular.isDefined($scope.search) ||
-          !angular.isDefined($scope.search.author)) {
-        return true;
-      }
-      if ($scope.search.author === "") {
+      if (checkDefined(paper,"author")) {
         return true;
       }
       for (let i=0; i<paper.authors.length; i++) {
@@ -105,11 +155,27 @@ angular.module('index').controller('IndexController', [
           !angular.isDefined($scope.search.association)) {
         return true;
       }
-      if ($scope.search.keyword === "") {
+      if ($scope.search.association === "") {
         return true;
       }
       return $scope.search.association === paper.Association;
     }
+
+    // // Return boolean dependent on finding author snippet in paper
+    // $scope.authormatch = function (paper) {
+    //   if (!angular.isDefined(paper) ||
+    //       !angular.isDefined($scope.search) ||
+    //       !angular.isDefined($scope.search.author)) {
+    //     return true;
+    //   }
+    //   let authorMatch = false;
+    //   for (let i=0; i<paper.authors.length; i++) {
+    //     if (paper.authors[i].author.toLowerCase().includes($scope.search.author.toLowerCase())) {
+    //       authorMatch = true;
+    //     }
+    //   }
+    //   return authorMatch;
+    // }
 
   }
 ]);
