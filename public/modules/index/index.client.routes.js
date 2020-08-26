@@ -24,6 +24,9 @@ angular.module('index').config([
       when('/a', {
         templateUrl: 'modules/index/awards.html'
       }).
+      when('/rec', {
+        templateUrl: 'modules/index/recordings.html'
+      }).
       // when('/t', {
       //   templateUrl: 'modules/index/team.html'
       // }).
